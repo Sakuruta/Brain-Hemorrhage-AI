@@ -1,0 +1,40 @@
+streamlit
+(frontend tampilan ui alami dengan script python yang telah dibuat)
+
+torch
+(torch atau pytorch mesin kecerdasan library deep learning)
+
+torchvision
+library computer vision pendamping pytorch disini memiliki 2 fungsi :
+- Menyediakan kerangka pra latih / pra model (ResNet50)
+- Menyediakan alat bantu (transformer) untuk memotong, mennyeragamkan ukuran , serta menormalisasikan warna gambar CT scan sebelum dimasukan ke dalam AI
+
+Pillow
+(Library python untuk memanpipulasi file gambar, bertugas untuk membaca file misal .jpg dan .png melalui web, lalu membaca file agar pikeselnya bisa diproses oleh python)
+
+numpy
+(Library python sebagai fondasi perhitungan array dan matriks, (pustaka pendukung seperti torch, torchvision, dan pillow sangat bergantung pada library numpy di balik layar untuk menghitung struktur matriks gambar tersebut))
+
+
+
+
+Untuk memudahkan mengakses semua dataset yang ada kita menggunakan prepare_dataset.py 
+menggunakan library : 
+import cv2
+import numpy as np
+
+Fungsinya sebgai preprocesing data dan juga data splitting untuk 6 kelas berbeda
+- membaca label diagnosis per slice gambar
+- mebagi data ke dalam 2 subset Train dan Validation 
+  (untuk mencegah kebocoran data)
+- mengkonversi mask segmentasi biner menjadi mask multi class
+
+train.py 
+- Fungsi utama training membagi menjadi 2 fase Train dan val, menghitung train loss dan val loss
+
+evaluate.py 
+- berfungsi untuk mengevaluasi model dengan memberikan laporan metrik 
+  segmentasi per class
+
+app.py
+- mengghubungkan model denga streamlit agar dapat menerima input dari pengguna secara interaktif
